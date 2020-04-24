@@ -33,7 +33,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>{
             artist: args.value_of("artist").unwrap_or("")
         };
 
-        GeniusClient::with_config(cfg).search(req).await?;
+        let results = GeniusClient::with_config(cfg).search(req).await?;
+        let hits = results.get_hits();
+
+        println!("Found {} results", hits.len());
+        for (i, hit) in hits.iter().enumerate() {
+            println!("{}: {}", i, hit);
+        }
     }
 
     Ok(())
