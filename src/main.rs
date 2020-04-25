@@ -1,11 +1,12 @@
-mod search;
+mod lyrics;
+mod config;
 
 extern crate clap;
 extern crate tokio;
 
 use clap::{App, Arg, SubCommand};
-use search::request::{Request, GeniusClient};
-use search::config::{Config, configure};
+use lyrics::{Request, GeniusClient};
+use config::{Config, configure};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>>{

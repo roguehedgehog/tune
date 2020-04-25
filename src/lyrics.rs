@@ -4,7 +4,7 @@ extern crate url;
 use reqwest::header;
 use url::form_urlencoded::Serializer;
 use std::error::Error;
-use crate::search::config::Config;
+use crate::config::Config;
 use serde::{Serialize, Deserialize};
 use serde_json;
 pub struct Request<T> {
