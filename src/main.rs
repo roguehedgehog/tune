@@ -1,11 +1,13 @@
-mod lyrics;
 mod config;
+mod http;
+mod lyric;
+mod video;
 
 extern crate clap;
 extern crate tokio;
 
 use clap::{App, Arg, SubCommand};
-use lyrics::{Request, GeniusClient};
+use lyric::{Request, GeniusClient};
 use config::{Config, configure};
 
 #[tokio::main]
@@ -57,11 +59,15 @@ fn configure_app(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let req = video::Request{
+        title: title
+    };
+
     Ok(())
 }
 
 async fn search_lyrics(cfg: Config, lyrics: &str, artist: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let req = Request{
+    let req = lyrics::Request{
         lyrics: lyrics, 
         artist: artist,
     };

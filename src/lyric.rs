@@ -2,14 +2,20 @@ extern crate reqwest;
 extern crate url;
 
 use reqwest::header;
-use url::form_urlencoded::Serializer;
 use std::error::Error;
 use crate::config::Config;
+use crate::http::Query;
 use serde::{Serialize, Deserialize};
 use serde_json;
 pub struct Request<T> {
 	pub lyrics: T,
 	pub artist: T
+}
+
+impl Query for Request<&str> {
+	fn to_string(&self) -> String {
+		format!("{} {}", self.artist, self.lyrics)
+	}
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Results {
@@ -53,10 +59,7 @@ impl GeniusClient {
 	}
 
 	pub async fn search(&self, req: Request<&str>) -> Result<Results, Box<dyn Error>> {
-		let params = Serializer::new(String::new())
-					.append_pair("q", &format!("{} {}", req.artist, req.lyrics).to_owned())
-					.finish();
-		let url = format!("{}?{}", &self.search_endpoint, &params).to_owned();
+		let url = format!("{}?{}", &self.search_endpoint, req.get_query()).to_owned();
 		let mut headers = header::HeaderMap::new();
 		headers.insert(
 			header::AUTHORIZATION, 
@@ -71,4 +74,5 @@ impl GeniusClient {
 
 		Ok(results)
 	}
+
 }
