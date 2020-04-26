@@ -10,37 +10,68 @@ use config::{Config, configure};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>>{
-    let app = App::new("Tune: song search by lyrics")
-        .version("0.1.0")
-        .about("https://github.com/wildpumpkin/tune")
-        .subcommand(SubCommand::with_name("configure"))
-        .subcommand(SubCommand::with_name("search")
-            .arg(Arg::with_name("lyrics").index(1))
-            .arg(Arg::with_name("artist").short("a").long("artist").takes_value(true))
-        );
-
+    let app = create_app();
     let args = app.get_matches();
     let cfg: Config = confy::load("tune")?;
 
     if args.is_present("configure") {
-        confy::store("tune", configure(cfg))?;
-        println!("Tune configuration has been saved.");
-        return Ok(());
+        return configure_app(cfg);
     }
 
-    if let Some(args) = args.subcommand_matches("search") {
-        let req = Request{
-            lyrics: args.value_of("lyrics").expect("lyric search string not provided."), 
-            artist: args.value_of("artist").unwrap_or("")
-        };
+    if let Some(video_args) = args.subcommand_matches("video") {
+        return search_videos(
+            cfg, 
+            video_args.value_of("title").expect("title must be provided"),
+        );
+    }
 
-        let results = GeniusClient::with_config(cfg).search(req).await?;
-        let hits = results.get_hits();
+    if let Some(lyric_args) = args.subcommand_matches("lyrics") {
+        return search_lyrics(
+            cfg,
+            lyric_args.value_of("lyrics").expect("lyrics must be provided"),
+            lyric_args.value_of("artist").unwrap_or(""),
+        ).await;
+    }
 
-        println!("Found {} results", hits.len());
-        for (i, hit) in hits.iter().enumerate() {
-            println!("{}: {}", i, hit);
-        }
+    Ok(())
+}
+
+fn create_app<'a, 'b>() -> App<'a, 'b>{
+    App::new("Tune: song search by lyrics")
+        .version("0.1.0")
+        .about("https://github.com/wildpumpkin/tune")
+        .subcommand(SubCommand::with_name("configure"))
+        .subcommand(SubCommand::with_name("video")
+            .arg(Arg::with_name("title")))
+        .subcommand(SubCommand::with_name("lyrics")
+            .arg(Arg::with_name("lyrics").index(1))
+            .arg(Arg::with_name("artist").short("a").long("artist").takes_value(true))
+        )
+}
+
+fn configure_app(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
+    confy::store("tune", configure(cfg))?;
+    println!("Tune configuration has been saved.");
+
+    Ok(())
+}
+
+fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
+    Ok(())
+}
+
+async fn search_lyrics(cfg: Config, lyrics: &str, artist: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let req = Request{
+        lyrics: lyrics, 
+        artist: artist,
+    };
+
+    let results = GeniusClient::with_config(cfg).search(req).await?;
+    let hits = results.get_hits();
+
+    println!("Found {} results", hits.len());
+    for (i, hit) in hits.iter().enumerate() {
+        println!("{}: {}", i, hit);
     }
 
     Ok(())
