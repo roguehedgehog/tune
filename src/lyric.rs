@@ -2,19 +2,24 @@ extern crate reqwest;
 extern crate url;
 
 use reqwest::header;
+use reqwest::Client;
 use std::error::Error;
+use std::collections::HashMap;
 use crate::config::Config;
 use crate::http::Query;
 use serde::{Serialize, Deserialize};
 use serde_json;
 pub struct Request<T> {
 	pub lyrics: T,
-	pub artist: T
+	pub artist: T,
 }
 
 impl Query for Request<&str> {
-	fn to_string(&self) -> String {
-		format!("{} {}", self.artist, self.lyrics)
+	fn get_params(&self) -> HashMap<String, String> {
+		let mut map = HashMap::new();
+		map.insert("q".to_string(), format!("{} {}", self.artist, self.lyrics));
+
+		map
 	}
 }
 #[derive(Debug, Serialize, Deserialize)]
@@ -59,20 +64,25 @@ impl GeniusClient {
 	}
 
 	pub async fn search(&self, req: Request<&str>) -> Result<Results, Box<dyn Error>> {
-		let url = format!("{}?{}", &self.search_endpoint, req.get_query()).to_owned();
+		let url = req.get_url(self.search_endpoint.clone());
+		let resp = self.create_client()?.get(&url).send().await?;
+		let results: Results = serde_json::from_str(
+			&resp.text().await?.to_owned()
+		)?;
+
+		Ok(results)
+	}
+
+	fn create_client(&self) -> Result<Client, Box<dyn Error>> {
 		let mut headers = header::HeaderMap::new();
 		headers.insert(
 			header::AUTHORIZATION, 
 			header::HeaderValue::from_str(&format!("Bearer {}", self.api_key).to_owned())?
 		);
-		let http = reqwest::Client::builder()
-			.default_headers(headers)
-			.build()?;
-		let resp = http.get(&url).send().await?;
-		let text = resp.text().await?;
-		let results: Results = serde_json::from_str(&text)?;
 
-		Ok(results)
+		Ok(reqwest::Client::builder()
+			.default_headers(headers)
+			.build()?)
 	}
 
 }

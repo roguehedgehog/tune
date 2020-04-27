@@ -7,8 +7,9 @@ extern crate clap;
 extern crate tokio;
 
 use clap::{App, Arg, SubCommand};
-use lyric::{Request, GeniusClient};
+use lyric::GeniusClient;
 use config::{Config, configure};
+use video::YouTubeClient;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>>{
@@ -24,7 +25,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>{
         return search_videos(
             cfg, 
             video_args.value_of("title").expect("title must be provided"),
-        );
+        ).await;
     }
 
     if let Some(lyric_args) = args.subcommand_matches("lyrics") {
@@ -58,16 +59,20 @@ fn configure_app(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
+async fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
     let req = video::Request{
-        title: title
+        title: title,
+        key: &cfg.youtube_api_key.to_owned(),
     };
+
+    let client = YouTubeClient::with_config(cfg);
+    client.search(req).await?;
 
     Ok(())
 }
 
 async fn search_lyrics(cfg: Config, lyrics: &str, artist: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let req = lyrics::Request{
+    let req = lyric::Request{
         lyrics: lyrics, 
         artist: artist,
     };
