@@ -22,33 +22,6 @@ impl Query for Request<&str> {
 		map
 	}
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Results {
-	response: Response
-}
-#[derive(Debug, Serialize, Deserialize)]
-struct Response {
-	hits: Vec<Hit>
-}
-#[derive(Clone, Debug, Serialize, Deserialize)]
-struct Hit {
- result: HitResult
-}
-#[derive(Clone, Debug, Serialize, Deserialize)]
-struct HitResult {
- full_title: String
-}
-
-impl Results {
-	pub fn get_hits(&self) -> Vec<String> {
-		let mut hits = Vec::with_capacity(self.response.hits.len());
-		for hit in &self.response.hits {
-			hits.push(hit.result.full_title.clone())
-		}
-
-		hits
-	}
-}
 
 pub struct GeniusClient {
 	search_endpoint: String,
@@ -85,4 +58,32 @@ impl GeniusClient {
 			.build()?)
 	}
 
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Results {
+	response: Response
+}
+#[derive(Serialize, Deserialize)]
+struct Response {
+	hits: Vec<Hit>
+}
+#[derive(Clone, Serialize, Deserialize)]
+struct Hit {
+ result: HitResult
+}
+#[derive(Clone, Serialize, Deserialize)]
+struct HitResult {
+ full_title: String
+}
+
+impl Results {
+	pub fn get_hits(&self) -> Vec<String> {
+		let mut hits = Vec::with_capacity(self.response.hits.len());
+		for hit in &self.response.hits {
+			hits.push(hit.result.full_title.clone())
+		}
+
+		hits
+	}
 }

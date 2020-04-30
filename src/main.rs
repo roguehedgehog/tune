@@ -66,7 +66,12 @@ async fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::erro
     };
 
     let client = YouTubeClient::with_config(cfg);
-    client.search(req).await?;
+    let results = client.search(req).await?;
+
+    println!("Found {} results", results.items.len());
+    for video in results.items {
+        println!("{}\n{}\n", video.get_title(), video.get_location())
+    }
 
     Ok(())
 }
