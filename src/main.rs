@@ -7,12 +7,12 @@ extern crate clap;
 extern crate tokio;
 
 use clap::{App, Arg, SubCommand};
+use config::{configure, Config};
 use lyric::GeniusClient;
-use config::{Config, configure};
 use video::YouTubeClient;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>>{
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app = create_app();
     let args = app.get_matches();
     let cfg: Config = confy::load("tune")?;
@@ -23,32 +23,43 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>{
 
     if let Some(video_args) = args.subcommand_matches("video") {
         return search_videos(
-            cfg, 
-            video_args.value_of("title").expect("title must be provided"),
-        ).await;
+            cfg,
+            video_args
+                .value_of("title")
+                .expect("title must be provided"),
+        )
+        .await;
     }
 
     if let Some(lyric_args) = args.subcommand_matches("lyrics") {
         return search_lyrics(
             cfg,
-            lyric_args.value_of("lyrics").expect("lyrics must be provided"),
+            lyric_args
+                .value_of("lyrics")
+                .expect("lyrics must be provided"),
             lyric_args.value_of("artist").unwrap_or(""),
-        ).await;
+        )
+        .await;
     }
 
     Ok(())
 }
 
-fn create_app<'a, 'b>() -> App<'a, 'b>{
+fn create_app<'a, 'b>() -> App<'a, 'b> {
     App::new("Tune: song search by lyrics")
         .version("0.1.0")
         .about("https://github.com/wildpumpkin/tune")
         .subcommand(SubCommand::with_name("configure"))
-        .subcommand(SubCommand::with_name("video")
-            .arg(Arg::with_name("title")))
-        .subcommand(SubCommand::with_name("lyrics")
-            .arg(Arg::with_name("lyrics").index(1))
-            .arg(Arg::with_name("artist").short("a").long("artist").takes_value(true))
+        .subcommand(SubCommand::with_name("video").arg(Arg::with_name("title")))
+        .subcommand(
+            SubCommand::with_name("lyrics")
+                .arg(Arg::with_name("lyrics").index(1))
+                .arg(
+                    Arg::with_name("artist")
+                        .short("a")
+                        .long("artist")
+                        .takes_value(true),
+                ),
         )
 }
 
@@ -60,7 +71,7 @@ fn configure_app(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let req = video::Request{
+    let req = video::Request {
         title: title,
         key: &cfg.youtube_api_key.to_owned(),
     };
@@ -76,9 +87,13 @@ async fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::erro
     Ok(())
 }
 
-async fn search_lyrics(cfg: Config, lyrics: &str, artist: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let req = lyric::Request{
-        lyrics: lyrics, 
+async fn search_lyrics(
+    cfg: Config,
+    lyrics: &str,
+    artist: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let req = lyric::Request {
+        lyrics: lyrics,
         artist: artist,
     };
 
@@ -92,4 +107,3 @@ async fn search_lyrics(cfg: Config, lyrics: &str, artist: &str) -> Result<(), Bo
 
     Ok(())
 }
-
