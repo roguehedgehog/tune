@@ -1,6 +1,6 @@
 pub mod config;
 mod http;
-mod lyric;
+pub mod lyric;
 mod video;
 
 extern crate clap;
@@ -58,10 +58,7 @@ pub async fn search_lyrics(
     lyrics: &str,
     artist: &str,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let req = lyric::Request {
-        lyrics: lyrics,
-        artist: artist,
-    };
+    let req = lyric::Request { lyrics, artist };
 
     let results = GeniusClient::with_config(cfg).search(req).await?;
     let hits = results.get_hits();

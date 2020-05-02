@@ -1,0 +1,334 @@
+{
+    "meta": {
+        "status": 200
+    },
+    "response": {
+        "hits": [
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/2222414",
+                    "full_title": "Maria by Studio 99",
+                    "header_image_thumbnail_url": "https://assets.genius.com/images/default_cover_image.png?1588262610",
+                    "header_image_url": "https://assets.genius.com/images/default_cover_image.png?1588262610",
+                    "id": 2222414,
+                    "lyrics_owner_id": 1549345,
+                    "lyrics_state": "complete",
+                    "path": "/Studio-99-maria-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://assets.genius.com/images/default_cover_image.png?1588262610",
+                    "song_art_image_url": "https://assets.genius.com/images/default_cover_image.png?1588262610",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Maria",
+                    "title_with_featured": "Maria",
+                    "url": "https://genius.com/Studio-99-maria-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/452396",
+                        "header_image_url": "https://assets.genius.com/images/default_avatar_300.png?1588262610",
+                        "id": 452396,
+                        "image_url": "https://assets.genius.com/images/default_avatar_300.png?1588262610",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Studio 99",
+                        "url": "https://genius.com/artists/Studio-99"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 3,
+                    "api_path": "/songs/193016",
+                    "full_title": "Maria by Blondie",
+                    "header_image_thumbnail_url": "https://images.rapgenius.com/4d87530ff490a2273a1d4ba04c0bb6fd.300x260x1.jpg",
+                    "header_image_url": "https://images.rapgenius.com/4d87530ff490a2273a1d4ba04c0bb6fd.300x260x1.jpg",
+                    "id": 193016,
+                    "lyrics_owner_id": 256722,
+                    "lyrics_state": "complete",
+                    "path": "/Blondie-maria-lyrics",
+                    "pyongs_count": 5,
+                    "song_art_image_thumbnail_url": "https://images.rapgenius.com/4d87530ff490a2273a1d4ba04c0bb6fd.300x260x1.jpg",
+                    "song_art_image_url": "https://images.rapgenius.com/4d87530ff490a2273a1d4ba04c0bb6fd.300x260x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 3,
+                        "hot": false,
+                        "pageviews": 30402
+                    },
+                    "title": "Maria",
+                    "title_with_featured": "Maria",
+                    "url": "https://genius.com/Blondie-maria-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/8227",
+                        "header_image_url": "https://s3.amazonaws.com/rapgenius/Blondie_2.jpg",
+                        "id": 8227,
+                        "image_url": "https://s3.amazonaws.com/rapgenius/Blondie_2.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Blondie",
+                        "url": "https://genius.com/artists/Blondie"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/3798575",
+                    "full_title": "How u move like dat by Product of my society",
+                    "header_image_thumbnail_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.1000x1000x1.jpg",
+                    "id": 3798575,
+                    "lyrics_owner_id": 6596262,
+                    "lyrics_state": "complete",
+                    "path": "/Product-of-my-society-how-u-move-like-dat-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.1000x1000x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "How u move like dat",
+                    "title_with_featured": "How u move like dat",
+                    "url": "https://genius.com/Product-of-my-society-how-u-move-like-dat-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/1508457",
+                        "header_image_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.1000x1000x1.jpg",
+                        "id": 1508457,
+                        "image_url": "https://images.genius.com/bfa42c33bf7ce627ea6b1addb9bae222.1000x1000x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Product of my society",
+                        "url": "https://genius.com/artists/Product-of-my-society"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/3878034",
+                    "full_title": "Party at the Club by Itsddj (Ft. G. Otrappy)",
+                    "header_image_thumbnail_url": "https://images.genius.com/e11764b40170d931eedcb646d37e3c35.300x300x1.png",
+                    "header_image_url": "https://images.genius.com/e11764b40170d931eedcb646d37e3c35.500x500x1.png",
+                    "id": 3878034,
+                    "lyrics_owner_id": 4690142,
+                    "lyrics_state": "complete",
+                    "path": "/Itsddj-party-at-the-club-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/e11764b40170d931eedcb646d37e3c35.300x300x1.png",
+                    "song_art_image_url": "https://images.genius.com/e11764b40170d931eedcb646d37e3c35.500x500x1.png",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Party at the Club",
+                    "title_with_featured": "Party at the Club (Ft. G. Otrappy)",
+                    "url": "https://genius.com/Itsddj-party-at-the-club-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/1457583",
+                        "header_image_url": "https://images.genius.com/f22c61d0afa7c710f45e86bb96273b82.1000x210x1.jpg",
+                        "id": 1457583,
+                        "image_url": "https://images.genius.com/e11764b40170d931eedcb646d37e3c35.500x500x1.png",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Itsddj",
+                        "url": "https://genius.com/artists/Itsddj"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/4359282",
+                    "full_title": "Piggy Got Back by Kermit the Frog",
+                    "header_image_thumbnail_url": "https://images.genius.com/7f33577e9a1e0f8748064084227e750e.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/7f33577e9a1e0f8748064084227e750e.400x400x1.jpg",
+                    "id": 4359282,
+                    "lyrics_owner_id": 5934018,
+                    "lyrics_state": "complete",
+                    "path": "/Kermit-the-frog-piggy-got-back-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/7f33577e9a1e0f8748064084227e750e.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/7f33577e9a1e0f8748064084227e750e.400x400x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Piggy Got Back",
+                    "title_with_featured": "Piggy Got Back",
+                    "url": "https://genius.com/Kermit-the-frog-piggy-got-back-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/39474",
+                        "header_image_url": "https://images.genius.com/921ce69a3b0fc349526e5ab38003b80c.912x400x1.jpg",
+                        "id": 39474,
+                        "image_url": "https://images.genius.com/7f33577e9a1e0f8748064084227e750e.400x400x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Kermit the Frog",
+                        "url": "https://genius.com/artists/Kermit-the-frog"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/4014025",
+                    "full_title": "Partner In Crime by Dash Stokes",
+                    "header_image_thumbnail_url": "https://images.genius.com/9bbd14aae1c40e8c157913b42b8425f8.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/9bbd14aae1c40e8c157913b42b8425f8.625x625x1.jpg",
+                    "id": 4014025,
+                    "lyrics_owner_id": 4648440,
+                    "lyrics_state": "complete",
+                    "path": "/Dash-stokes-partner-in-crime-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/9bbd14aae1c40e8c157913b42b8425f8.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/9bbd14aae1c40e8c157913b42b8425f8.625x625x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Partner In Crime",
+                    "title_with_featured": "Partner In Crime",
+                    "url": "https://genius.com/Dash-stokes-partner-in-crime-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/1367400",
+                        "header_image_url": "https://images.genius.com/5eb1b472efa2f06b93d2843e7781a70b.625x646x1.jpg",
+                        "id": 1367400,
+                        "image_url": "https://images.genius.com/34d243c700ae07e9b4cc23c8840fdfc0.1000x1000x1.png",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Dash Stokes",
+                        "url": "https://genius.com/artists/Dash-stokes"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/4965504",
+                    "full_title": "Tequila by RG (UK)",
+                    "header_image_thumbnail_url": "https://images.genius.com/436287f823deb40e0a7894f96a4cfe26.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/436287f823deb40e0a7894f96a4cfe26.1000x1000x1.jpg",
+                    "id": 4965504,
+                    "lyrics_owner_id": 5918431,
+                    "lyrics_state": "complete",
+                    "path": "/Rg-uk-tequila-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/436287f823deb40e0a7894f96a4cfe26.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/436287f823deb40e0a7894f96a4cfe26.1000x1000x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Tequila",
+                    "title_with_featured": "Tequila",
+                    "url": "https://genius.com/Rg-uk-tequila-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/2008816",
+                        "header_image_url": "https://assets.genius.com/images/default_avatar_300.png?1588262610",
+                        "id": 2008816,
+                        "image_url": "https://assets.genius.com/images/default_avatar_300.png?1588262610",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "RG (UK)",
+                        "url": "https://genius.com/artists/Rg-uk"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/2972472",
+                    "full_title": "Moms by Bambu",
+                    "header_image_thumbnail_url": "https://images.genius.com/5ff9076f1553f1d569634875683d2ae3.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/5ff9076f1553f1d569634875683d2ae3.500x500x1.jpg",
+                    "id": 2972472,
+                    "lyrics_owner_id": 3933375,
+                    "lyrics_state": "complete",
+                    "path": "/Bambu-moms-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/5ff9076f1553f1d569634875683d2ae3.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/5ff9076f1553f1d569634875683d2ae3.500x500x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Moms",
+                    "title_with_featured": "Moms",
+                    "url": "https://genius.com/Bambu-moms-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/12246",
+                        "header_image_url": "https://images.genius.com/c9b6ec8f6ba9c54664490d2302b8d63c.479x479x1.png",
+                        "id": 12246,
+                        "image_url": "https://images.genius.com/c9b6ec8f6ba9c54664490d2302b8d63c.479x479x1.png",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Bambu",
+                        "url": "https://genius.com/artists/Bambu"
+                    }
+                }
+            },
+            {
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/36122",
+                    "full_title": "Roxanna by Opio",
+                    "header_image_thumbnail_url": "https://images.genius.com/196fa29a5c42f4f08d883d91d8507898.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/196fa29a5c42f4f08d883d91d8507898.620x620x1.jpg",
+                    "id": 36122,
+                    "lyrics_owner_id": 50,
+                    "lyrics_state": "complete",
+                    "path": "/Opio-roxanna-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/196fa29a5c42f4f08d883d91d8507898.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/196fa29a5c42f4f08d883d91d8507898.620x620x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
+                    },
+                    "title": "Roxanna",
+                    "title_with_featured": "Roxanna",
+                    "url": "https://genius.com/Opio-roxanna-lyrics",
+                    "primary_artist": {
+                        "api_path": "/artists/5862",
+                        "header_image_url": "https://images.genius.com/0be70c07eaace3a104a89b645c30eaa6.375x281x1.jpg",
+                        "id": 5862,
+                        "image_url": "https://images.genius.com/0be70c07eaace3a104a89b645c30eaa6.375x281x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Opio",
+                        "url": "https://genius.com/artists/Opio"
+                    }
+                }
+            }
+        ]
+    }
+}
