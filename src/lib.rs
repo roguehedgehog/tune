@@ -29,44 +29,29 @@ pub fn create_app<'a, 'b>() -> App<'a, 'b> {
         )
 }
 
-pub fn configure_app(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
+pub fn configure_app(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
     confy::store("tune", configure(cfg))?;
-    println!("Tune configuration has been saved.");
-
+    
     Ok(())
 }
 
-pub async fn search_videos(cfg: Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn search_videos(cfg: &Config, title: &str) -> Result<video::Response, Box<dyn std::error::Error>> {
     let req = video::Request {
-        title: title,
+        title,
         key: &cfg.youtube_api_key.to_owned(),
     };
 
     let client = YouTubeClient::with_config(cfg);
-    let results = client.search(req).await?;
 
-    println!("Found {} results", results.items.len());
-    for video in results.items {
-        println!("{}\n{}\n", video.get_title(), video.get_location())
-    }
-
-    Ok(())
+    Ok(client.search(req).await?)
 }
 
 pub async fn search_lyrics(
-    cfg: Config,
+    cfg: &Config,
     lyrics: &str,
     artist: &str,
-) -> Result<(), Box<dyn std::error::Error>> {
+) -> Result<lyric::Results, Box<dyn std::error::Error>> {
     let req = lyric::Request { lyrics, artist };
 
-    let results = GeniusClient::with_config(cfg).search(req).await?;
-    let hits = results.get_hits();
-
-    println!("Found {} results", hits.len());
-    for (i, hit) in hits.iter().enumerate() {
-        println!("{}: {}", i, hit);
-    }
-
-    Ok(())
+    Ok(GeniusClient::with_config(cfg).search(req).await?)
 }

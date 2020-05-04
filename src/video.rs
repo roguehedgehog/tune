@@ -27,9 +27,9 @@ pub struct YouTubeClient {
 }
 
 impl YouTubeClient {
-    pub fn with_config(cfg: Config) -> Self {
+    pub fn with_config(cfg: &Config) -> Self {
         Self {
-            video_search_endpoint: cfg.youtube_search_endpoint,
+            video_search_endpoint: cfg.youtube_search_endpoint.clone(),
         }
     }
 

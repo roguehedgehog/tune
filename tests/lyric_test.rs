@@ -24,7 +24,7 @@ async fn make_lyric_request() {
         ..Default::default()
     };
 
-    let tracks = GeniusClient::with_config(cfg)
+    let tracks = GeniusClient::with_config(&cfg)
         .search(Request {
             lyrics: "She moves like she don't care",
             artist: "Blondie",

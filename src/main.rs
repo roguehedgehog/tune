@@ -8,28 +8,40 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cfg: Config = confy::load("tune")?;
 
     if args.is_present("configure") {
-        return configure_app(cfg);
+        configure_app(&cfg)?;
+        println!("Tune configuration has been saved.");
     }
 
     if let Some(video_args) = args.subcommand_matches("video") {
-        return search_videos(
-            cfg,
+        let videos = search_videos(
+            &cfg,
             video_args
                 .value_of("title")
                 .expect("title must be provided"),
         )
-        .await;
+        .await?;
+
+        println!("Found {} results", videos.items.len());
+        for video in videos.items {
+            println!("{}\n{}\n", video.get_title(), video.get_location())
+        }
     }
 
     if let Some(lyric_args) = args.subcommand_matches("lyrics") {
-        return search_lyrics(
-            cfg,
+        let songs = search_lyrics(
+            &cfg,
             lyric_args
                 .value_of("lyrics")
                 .expect("lyrics must be provided"),
             lyric_args.value_of("artist").unwrap_or(""),
         )
-        .await;
+        .await?
+        .get_hits();
+
+        println!("Found {} results", songs.len());
+        for (i, hit) in songs.iter().enumerate() {
+            println!("{}: {}", i, hit);
+        }
     }
 
     Ok(())

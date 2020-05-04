@@ -29,10 +29,10 @@ pub struct GeniusClient {
 }
 
 impl GeniusClient {
-    pub fn with_config(cfg: Config) -> Self {
+    pub fn with_config(cfg: &Config) -> Self {
         Self {
-            search_endpoint: cfg.genius_search_endpoint,
-            api_key: cfg.genius_api_key,
+            search_endpoint: cfg.genius_search_endpoint.clone(),
+            api_key: cfg.genius_api_key.clone(),
         }
     }
 
