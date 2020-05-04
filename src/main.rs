@@ -23,7 +23,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         println!("Found {} results", videos.items.len());
         for video in videos.items {
-            println!("{}\n{}\n", video.get_title(), video.get_location())
+            println!(
+                "Title: {}\nDesription: {}\nLink: {}",
+                video.get_title(),
+                video.get_description(),
+                video.get_location()
+            )
         }
     }
 

@@ -31,11 +31,14 @@ pub fn create_app<'a, 'b>() -> App<'a, 'b> {
 
 pub fn configure_app(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
     confy::store("tune", configure(cfg))?;
-    
+
     Ok(())
 }
 
-pub async fn search_videos(cfg: &Config, title: &str) -> Result<video::Response, Box<dyn std::error::Error>> {
+pub async fn search_videos(
+    cfg: &Config,
+    title: &str,
+) -> Result<video::Response, Box<dyn std::error::Error>> {
     let req = video::Request {
         title,
         key: &cfg.youtube_api_key.to_owned(),
