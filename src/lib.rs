@@ -1,6 +1,6 @@
 pub mod config;
 mod http;
-pub mod lyric;
+mod lyric;
 mod video;
 
 extern crate clap;

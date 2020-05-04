@@ -2,19 +2,15 @@ extern crate tune;
 
 use mockito::{mock, Matcher};
 use tune::config::Config;
-use tune::lyric::{GeniusClient, Request};
+use tune::search_lyrics;
 
 #[tokio::test]
-async fn make_lyric_request() {
+async fn test_search_lyrics() {
     let genius = mock("GET", "/search")
         .match_header("authorization", "Bearer genius-token")
         .match_query(Matcher::Exact(format!(
             "q=Blondie+She+moves+like+she+don%27t+care"
         )))
-        .with_status(201)
-        .with_header("content-type", "text/plain")
-        .with_header("x-api-key", "1234")
-        .with_body("world")
         .with_body_from_file("tests/resources/genius-response.json")
         .create();
 
@@ -24,11 +20,7 @@ async fn make_lyric_request() {
         ..Default::default()
     };
 
-    let tracks = GeniusClient::with_config(&cfg)
-        .search(Request {
-            lyrics: "She moves like she don't care",
-            artist: "Blondie",
-        })
+    let tracks = search_lyrics(&cfg, "She moves like she don't care", "Blondie")
         .await
         .unwrap()
         .get_hits();
