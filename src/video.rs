@@ -27,16 +27,17 @@ pub struct YouTubeClient {
 }
 
 impl YouTubeClient {
-    pub fn with_config(cfg: Config) -> Self {
+    pub fn with_config(cfg: &Config) -> Self {
         Self {
-            video_search_endpoint: cfg.youtube_search_endpoint,
+            video_search_endpoint: cfg.youtube_search_endpoint.clone(),
         }
     }
 
     pub async fn search(&self, req: Request<&str>) -> Result<Response, Box<dyn Error>> {
         let resp =
             reqwest::get(&req.get_url(self.video_search_endpoint.clone()).to_owned()).await?;
-        let results: Response = serde_json::from_str(&resp.text().await?.to_owned())?;
+        let txt = resp.text().await?;
+        let results: Response = serde_json::from_str(&txt)?;
 
         Ok(results)
     }
@@ -54,7 +55,11 @@ pub struct Video {
 
 impl Video {
     pub fn get_title(&self) -> String {
-        format!("{}\n{}", self.snippet.title, self.snippet.description)
+        self.snippet.title.clone()
+    }
+
+    pub fn get_description(&self) -> String {
+        self.snippet.description.clone()
     }
 
     pub fn get_location(&self) -> String {

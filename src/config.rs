@@ -22,7 +22,7 @@ impl ::std::default::Default for Config {
     }
 }
 
-pub fn configure(cfg: Config) -> Config {
+pub fn configure(cfg: &Config) -> Config {
     let mut new_genius_key = String::new();
     let mut new_youtube_key = String::new();
 
@@ -40,15 +40,15 @@ pub fn configure(cfg: Config) -> Config {
         .expect("Error reading YouTube Key");
 
     Config {
-        genius_search_endpoint: cfg.genius_search_endpoint,
-        youtube_search_endpoint: cfg.youtube_search_endpoint,
+        genius_search_endpoint: cfg.genius_search_endpoint.clone(),
+        youtube_search_endpoint: cfg.youtube_search_endpoint.clone(),
         genius_api_key: if new_genius_key.trim() == "" {
-            cfg.genius_api_key
+            cfg.genius_api_key.clone()
         } else {
             new_genius_key.trim().to_string()
         },
         youtube_api_key: if new_youtube_key.trim() == "" {
-            cfg.youtube_api_key
+            cfg.youtube_api_key.clone()
         } else {
             new_youtube_key.trim().to_string()
         },
