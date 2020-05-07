@@ -13,15 +13,25 @@ os:
 - windows
 - osx
 before_deploy:
-- mv target/release/tune "target/release/tune-$TRAVIS_TAG-$TRAVIS_OS_NAME"
+- cargo build --release
+- |
+  (
+    if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+      mv target/release/tune.exe "target/release/tune-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.exe"
+    else
+      mv target/release/tune "target/release/tune-${TRAVIS_TAG}-${TRAVIS_OS_NAME}"
+    fi
+    )
 deploy:
-- provider: releases
-  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: jIu0SRF3UaTcC/uNcNfDN7GJUuiBvbqUvQUO2obBhxtdaDpRrqNQu3cjsaU/Yh5lWj2letoXs4ARr1P1WJFzb9/x2rpAnv+pZ/EKWRNuad2Wha5bYSLjWbnhWFDB9WFLo5OXKwwjh3pJDfrivkJJ6KRiv+LEj5R//2N2UrCp+n+/x7u53FiRoWH2Y5ZNUieAgVuUNJg0be8AZTLLYZoOq4sZPSa5dvdiYcJG8dqyIZyUkW7zOQ3Q9sGJbvMrCyuJgMQC+VWtatSwQC90SYAaP4zPr4TPFHUv1VyFdoeCkZ7wpHynprj7KPGLyWTbkQowAXckfoxKVpKjYawmSjRChk7vak9VFc+Pt5DS+uxVjMOYd4zCjgiJGLUEpUMswFX0kF70KpU/5JGhSsx1AFXBPtPaHu+qtes5EoX6GGaUYP+YB0JKpIWnfx1m0KrNPWtuDzQhZSXUuEwMTZAqcvgNkPxzLp4yJF3vKR3sdkk1kopsZn5Gp+NtPJkQrophfXrS0geu0LJuOk7HNHyAREXwSkdfgaIp4W0uBoeQdmnDdw6xSVpsOvdlOc4mt/6wkofz/zmZWBw7mvdqRlyJ3iXu0HOGHi84wcMQZx36gvHZpWMY/L6h3Et3OMWcA0OJb7ntzpcZIBd+RBH0I2xJA6RxR7fyYh61/SnHsmTugUhElwc=
+  file: target/release/tune-*
   on:
     branch: master
     tags: true
     condition: "$TRAVIS_RUST_VERSION = stable"
-  api_key: 
-    secure: jl9dg9yRSdpMTnQEds9qx8fM9KE1w00zfORtNhPw/gc0EnLsGMVtvftthUPvwCb0wlxqGHjlOSEVBjQLNAoeaB082r9E7Tesil7xI68n15AuTbKMlc3OK01s8D8+kUjxo3HjxADO+0YHbClooDEJuI8hUbexWzCUjfsO8PtO+2W/H1m9873C2e8xABiGQQ0Nw4SC3T5QTHQOkct/hSpc3ghZKLW1I5K3NC3v2Y+ouaJfJKMNom1LGcje3bhUzQb9ea8ZtHoB3odq0jjP/XCKVMaahVMzfQ3Osl/gjBXE9AbDTLG9Hek3nu44sPl2J3izp5sjy5U3hr3eXjpswoh8maic06oQWr9I6unCNxFUavcqDzHX5Ha6GCN71iVL5no60nYrkS4FdptNrF00e9yeUZz4Cv6cyopah/KVuX/iD60+bFOytN5vv5mdpW0sficlkMUHt/Ih6pt4HeYKgNM5aEUcfksTtbwggPXC8cmSjszKzDELIfGYDC5VPe7RrYBxW2Su+8FRvzULsHFn2cyg4gqcmVnEg1rX6STyajcTWDwntvFxghw3lfBUY9LI8jHtHn2pufOJAkAd+btUNjLzGig9KmNJTsjR02Vz7lfV5C9ei9ILvzo6hpBaepUJFSPxr6iqvd9hwLko2AN0nwihfIIJjHcd1tKy2vmmSIUH23c=
-  file:
-  - target/release/tune-*
+  skip_cleanup: 'true'
+notifications:
+  email:
+    on_success: never
