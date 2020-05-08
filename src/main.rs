@@ -10,43 +10,81 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args.is_present("configure") {
         configure_app(&cfg)?;
         println!("Tune configuration has been saved.");
+
+        return Ok(());
     }
 
     if let Some(video_args) = args.subcommand_matches("video") {
-        let videos = search_videos(
+        return video(
             &cfg,
             video_args
                 .value_of("title")
                 .expect("title must be provided"),
         )
-        .await?;
-
-        println!("Found {} results", videos.items.len());
-        for video in videos.items {
-            println!(
-                "Title: {}\nDesription: {}\nLink: {}",
-                video.get_title(),
-                video.get_description(),
-                video.get_location()
-            )
-        }
+        .await;
     }
 
     if let Some(lyric_args) = args.subcommand_matches("lyrics") {
-        let songs = search_lyrics(
+        return lyrics(
             &cfg,
             lyric_args
                 .value_of("lyrics")
                 .expect("lyrics must be provided"),
             lyric_args.value_of("artist").unwrap_or(""),
         )
-        .await?
-        .get_hits();
+        .await;
+    }
 
-        println!("Found {} results", songs.len());
-        for (i, hit) in songs.iter().enumerate() {
-            println!("{}: {}", i, hit);
+    Ok(())
+}
+
+async fn lyrics(
+    cfg: &Config,
+    lyrics: &str,
+    artist: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let songs = search_lyrics(cfg, lyrics, artist).await?.get_hits();
+
+    if songs.len() == 0 {
+        println!("No songs could be found");
+        return Ok(());
+    }
+
+    println!("Found {} results", songs.len());
+    for (i, hit) in songs.iter().enumerate() {
+        println!("{}: {}", i, hit);
+    }
+
+    loop {
+        let mut selection = String::new();
+        println!("Enter the number of your selection to search videos (q to quit): ");
+        std::io::stdin().read_line(&mut selection)?;
+        selection = selection.trim().to_string();
+        if &selection[..] == "q" {
+            break Ok(());
         }
+
+        let sel: usize = selection.parse()?;
+        match songs.get(sel) {
+            Some(title) => {
+                video(&cfg, title).await?;
+                break Ok(());
+            }
+            None => println!("Invalid selection {}", selection),
+        }
+    }
+}
+
+async fn video(cfg: &Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let videos = search_videos(cfg, title).await?;
+    println!("Found {} results", videos.items.len());
+    for video in videos.items {
+        println!(
+            "Title: {}\nDesription: {}\nLink: {}",
+            video.get_title(),
+            video.get_description(),
+            video.get_location()
+        )
     }
 
     Ok(())
