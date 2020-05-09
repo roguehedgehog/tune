@@ -1,10 +1,12 @@
 extern crate serde;
+extern crate htmlescape;
 use crate::config::Config;
 use crate::http::Query;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::HashMap;
 use std::error::Error;
+use htmlescape::decode_html;
 pub struct Request<T> {
     pub title: T,
     pub key: T,
@@ -55,11 +57,17 @@ pub struct Video {
 
 impl Video {
     pub fn get_title(&self) -> String {
-        self.snippet.title.clone()
+        match decode_html(&self.snippet.title.to_owned()) {
+            Ok(title) => title,
+            Err(_) => self.snippet.title.clone(),
+        }
     }
 
     pub fn get_description(&self) -> String {
-        self.snippet.description.clone()
+        match decode_html(&self.snippet.description.to_owned()) {
+            Ok(desc) => desc,
+            Err(_) => self.snippet.description.clone(),
+        }
     }
 
     pub fn get_location(&self) -> String {
