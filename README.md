@@ -36,21 +36,26 @@ To search for videos
 ```console
 $ ./tune video "Now or Never Now by Metric"
 Found 5 results
+
 Title: Metric - Now or Never Now (Official Video)
-Desription: "Now or Never Now" official music video from the new Metric album "Art of Doubt," out now. ilovemetric.com CREDITS Directed by Lorraine Nicholson & Emily ...
-Link: https://www.youtube.com/watch?v=NC8MfulGMXE
+ Desc: "Now or Never Now" official music video from the new Metric album "Art of Doubt," out now. ilovemetric.com CREDITS Directed by Lorraine Nicholson & Emily ...
+Watch: https://www.youtube.com/watch?v=NC8MfulGMXE
+
 Title: Metric - Now or Never Now - Art of Doubt [Official Audio]
-Desription: Now or Never Now from METRIC's new album, ART OF DOUBT, out now. ilovemetric.com.
-Link: https://www.youtube.com/watch?v=U7DUOcCgmpU
+ Desc: Now or Never Now from METRIC's new album, ART OF DOUBT, out now. ilovemetric.com.
+Watch: https://www.youtube.com/watch?v=U7DUOcCgmpU
+
 Title: Metric - Now or Never Now
-Desription: From the Verge Music Lab at Trench Recordings: SiriusXM Canada presents Emily Haines and Jimmy Shaw from Metric performing "Now or Never Now"
-Link: https://www.youtube.com/watch?v=X1H6TKNB3SE
+ Desc: From the Verge Music Lab at Trench Recordings: SiriusXM Canada presents Emily Haines and Jimmy Shaw from Metric performing "Now or Never Now"
+Watch: https://www.youtube.com/watch?v=X1H6TKNB3SE
+
 Title: Now or Never Now (Radio Edit)
-Desription: Provided to YouTube by BMG Rights Management (US) LLC Now or Never Now (Radio Edit) · Metric Now or Never Now ℗ 2018 MMI/Crystal Math Music ...
-Link: https://www.youtube.com/watch?v=YfFpnVjXtvk
-Title: Metric performing &quot;Now or Never Now&quot; live on KCRW
-Desription: Celebrating their 20th year as a band, Metric's latest album Art of Doubt brings their guitar laden songs back to the forefront. Watch the full session here: ...
-Link: https://www.youtube.com/watch?v=y7cSbv9fCcc
+ Desc: Provided to YouTube by BMG Rights Management (US) LLC Now or Never Now (Radio Edit) · Metric Now or Never Now ℗ 2018 MMI/Crystal Math Music ...
+Watch: https://www.youtube.com/watch?v=YfFpnVjXtvk
+
+Title: Metric performing "Now or Never Now" live on KCRW
+ Desc: Celebrating their 20th year as a band, Metric's latest album Art of Doubt brings their guitar laden songs back to the forefront. Watch the full session here: ...
+Watch: https://www.youtube.com/watch?v=y7cSbv9fCcc
 ```
 
 
