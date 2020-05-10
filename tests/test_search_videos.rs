@@ -29,10 +29,7 @@ async fn test_search_videos() {
 
     let videos = videos.unwrap();
     assert_eq!(5, videos.items.len());
-    assert_eq!(
-        "Japandroids - \"Evil´s Sway\"",
-        videos.items[2].get_title()
-    );
+    assert_eq!("Japandroids - \"Evil´s Sway\"", videos.items[2].get_title());
     assert_eq!(
         "Japandroids, München, Feierwerk, 11.09.12.",
         videos.items[2].get_description()

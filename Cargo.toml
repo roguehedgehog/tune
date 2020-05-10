@@ -1,6 +1,6 @@
 [package]
 name = "tune"
-version = "0.1.0"
+version = "0.2.1"
 authors = ["Tahir Bulbrook <t@hir.me.uk>"]
 edition = "2018"
 

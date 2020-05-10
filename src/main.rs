@@ -77,10 +77,10 @@ async fn lyrics(
 
 async fn video(cfg: &Config, title: &str) -> Result<(), Box<dyn std::error::Error>> {
     let videos = search_videos(cfg, title).await?;
-    println!("Found {} results", videos.items.len());
+    println!("Found {} results\n", videos.items.len());
     for video in videos.items {
         println!(
-            "Title: {}\nDesription: {}\nLink: {}",
+            "Title: {}\n Desc: {}\nWatch: {}\n",
             video.get_title(),
             video.get_description(),
             video.get_location()

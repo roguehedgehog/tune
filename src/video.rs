@@ -1,12 +1,12 @@
-extern crate serde;
 extern crate htmlescape;
+extern crate serde;
 use crate::config::Config;
 use crate::http::Query;
+use htmlescape::decode_html;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::HashMap;
 use std::error::Error;
-use htmlescape::decode_html;
 pub struct Request<T> {
     pub title: T,
     pub key: T,
