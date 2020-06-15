@@ -12,7 +12,7 @@ pub trait Query {
         serializer.finish()
     }
 
-    fn get_url(&self, endpoint: String) -> String {
+    fn get_url(&self, endpoint: &str) -> String {
         format!("{}?{}", endpoint, self.get_query())
     }
 }

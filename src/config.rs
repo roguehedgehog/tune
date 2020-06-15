@@ -4,25 +4,25 @@ use std::io;
 #[derive(Serialize, Deserialize)]
 pub struct Config {
     pub genius_search_endpoint: String,
-    pub genius_api_key: String,
-
     pub youtube_search_endpoint: String,
+
+    pub genius_api_key: String,
     pub youtube_api_key: String,
 }
 
 impl ::std::default::Default for Config {
     fn default() -> Self {
         Self {
-            genius_search_endpoint: "https://api.genius.com/search".to_string(),
-            genius_api_key: String::new(),
+            genius_search_endpoint: "https://api.genius.com/search".to_owned(),
+            youtube_search_endpoint: "https://www.googleapis.com/youtube/v3/search".to_owned(),
 
-            youtube_search_endpoint: "https://www.googleapis.com/youtube/v3/search".to_string(),
+            genius_api_key: String::new(),
             youtube_api_key: String::new(),
         }
     }
 }
 
-pub fn configure(cfg: &Config) -> Config {
+pub fn configure<'a>(cfg: &'a Config) -> Config {
     let mut new_genius_key = String::new();
     let mut new_youtube_key = String::new();
 
