@@ -3,6 +3,7 @@ mod http;
 mod lyric;
 mod video;
 
+#[macro_use]
 extern crate clap;
 extern crate tokio;
 
@@ -10,8 +11,9 @@ use clap::{App, Arg, SubCommand};
 use config::{configure, Config};
 
 pub fn create_app<'a, 'b>() -> App<'a, 'b> {
-    App::new("Tune: song search by lyrics")
-        .version("0.1.0")
+    App::new(crate_name!())
+        .version(crate_version!())
+        .author(crate_authors!())
         .about("https://github.com/wildpumpkin/tune")
         .subcommand(SubCommand::with_name("configure"))
         .subcommand(SubCommand::with_name("video").arg(Arg::with_name("title")))
