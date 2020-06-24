@@ -3,17 +3,17 @@ mod http;
 mod lyric;
 mod video;
 
+#[macro_use]
 extern crate clap;
 extern crate tokio;
 
 use clap::{App, Arg, SubCommand};
 use config::{configure, Config};
-use lyric::GeniusClient;
-use video::YouTubeClient;
 
 pub fn create_app<'a, 'b>() -> App<'a, 'b> {
-    App::new("Tune: song search by lyrics")
-        .version("0.1.0")
+    App::new(crate_name!())
+        .version(crate_version!())
+        .author(crate_authors!())
         .about("https://github.com/wildpumpkin/tune")
         .subcommand(SubCommand::with_name("configure"))
         .subcommand(SubCommand::with_name("video").arg(Arg::with_name("title")))
@@ -41,12 +41,10 @@ pub async fn search_videos(
 ) -> Result<video::Response, Box<dyn std::error::Error>> {
     let req = video::Request {
         title,
-        key: &cfg.youtube_api_key.to_owned(),
+        key: &cfg.youtube_api_key,
     };
 
-    let client = YouTubeClient::with_config(cfg);
-
-    Ok(client.search(req).await?)
+    Ok(video::search(req, cfg).await?)
 }
 
 pub async fn search_lyrics(
@@ -56,5 +54,5 @@ pub async fn search_lyrics(
 ) -> Result<lyric::Results, Box<dyn std::error::Error>> {
     let req = lyric::Request { lyrics, artist };
 
-    Ok(GeniusClient::with_config(cfg).search(req).await?)
+    Ok(lyric::search(req, cfg).await?)
 }
